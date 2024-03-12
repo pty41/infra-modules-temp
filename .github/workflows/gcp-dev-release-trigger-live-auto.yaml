@@ -1,0 +1,38 @@
+name: Trigger gcp Live REPO
+
+on: 
+  push:
+    branches:
+      - dev
+      - release
+    paths:
+      - 'gcp/**'
+      
+jobs:
+  trigger_workflow:
+    runs-on: medium
+    steps:
+      - name: Trigger infra-live dev env
+        if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.INFRA_GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+            owner: 'shan',
+            repo: 'infra-live-gcp-temp',
+            workflow_id: 'cicd.yaml',
+            ref: 'dev'
+            })
+      - name: Trigger infra-live dev env
+        if: github.ref == 'refs/heads/release' && github.event_name == 'push'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.INFRA_GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+            owner: 'shan',
+            repo: 'infra-live-gcp-temp',
+            workflow_id: 'cicd.yaml',
+            ref: 'release'
+            })

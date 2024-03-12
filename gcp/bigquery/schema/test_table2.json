@@ -1,0 +1,32 @@
+[
+    {
+      "name": "event_id",
+      "mode": "REQUIRED",
+      "type": "STRING"
+    },
+    {
+      "name": "event_datetime",
+      "mode": "REQUIRED",
+      "type": "STRING"
+    },
+    {
+      "name": "member_id",
+      "mode": "REQUIRED",
+      "type": "STRING"
+    },
+    {
+      "name": "status",
+      "mode": "NULLABLE",
+      "type": "INTEGER"
+    },
+    {
+      "name": "event_date",
+      "mode": "NULLABLE",
+      "type": "DATE"
+    },
+    {
+      "name": "event_hour",
+      "mode": "NULLABLE",
+      "type": "INTEGER"
+    }
+]
